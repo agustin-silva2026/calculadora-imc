@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imc</title>
+
+</head>
+<body>
+    <h1>calculadora imc</h1>
+<style>
+        body {background-color:coral; align-items: center; text-align: center; font-family: Arial, sans-serif;}
+    </style>
+    <p>Altura (cm): <input type="number" id="alt"></p>
+    <p>Peso (kg): <input type="number" id="peso"></p>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <h2 id="res"></h2>
+    <img id="foto" style="display:none; max-width:600px; margin:0 auto;">
+
+    <script>
+    function calcular() {
+        var alt = document.getElementById("alt").value;
+        var peso = document.getElementById("peso").value;
+        alt=alt/100
+        var mi_imc = peso / (alt * alt);
+        var foto;
+        var tipo;
+
+        if (mi_imc < 18.5) {
+            tipo = "infrapeso";
+            foto = "bajo peso.jpeg";
+        } else if (mi_imc < 25) {
+            tipo = "peso normal";
+            foto = " peso normal.jpeg";
+        } else if (mi_imc < 30) {
+            tipo = "sobrepeso";
+            foto = "gordo.jpeg";
+        } else {
+            tipo = "obeso";
+            foto = "obeso.jpeg";
+        }
+
+        document.getElementById("res").innerText = "IMC: " + mi_imc.toFixed(1) + " (" + tipo + ")";
+
+        var img = document.getElementById("foto");
+        img.src = foto;
+        img.style.display = "block";
+    }
+    </script>
+</body>
+</html>
